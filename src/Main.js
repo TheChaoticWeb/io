@@ -1,4 +1,6 @@
 const{Server}=require('./Server');
+const{PluginManager}=require('./PluginManager');
+const{Terminal}=require('./Terminal');
 
 class Main {
   static main(args) {
