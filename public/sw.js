@@ -26,4 +26,7 @@ function handleRequest(request) {
       }
     })
   }
+  else {
+    return Response.redirect("/FatalError.sh?~="+encodeURIComponent("404 Not Found: " + url.pathname + url.search + url.hash));
+  }
 }
