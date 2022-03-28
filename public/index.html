@@ -1,5 +1,15 @@
 <script>
-  navigator.serviceWorker.register("/sw.js").then(function() {
-    location.reload();
+  navigator.serviceWorker.getRegistrations().then(function(registrations) {
+    if(registrations.length) {
+      navigator.serviceWorker.register("/sw.js").then(function() {
+        location.reload(true);
+      }, function(err) {
+        location.replace("/FatalError.sh?~="+encodeURIComponent(err));
+      });
+    } else {
+      location.replace("/Homepage.sh");
+    }
+  }, function(err) {
+    location.replace("/FatalError.sh?~="+encodeURIComponent(err));
   });
 </script>
