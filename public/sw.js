@@ -8,5 +8,22 @@ addEventListener("fetch", function(event) {
       event.respondWith(new Response(err,{status:500}));
     });
   } else {
+    event.respondWith(handleRequest(request));
   }
 });
+
+function handleRequest(request) {
+  var url = new URL(request.url);
+  if(url.pathname == "/FatalError.sh") {
+    return new Response(`
+<!DOCTYPE html>
+<title>FatalError.sh</title>
+<style>body{background:red;color:white;text-align:center}</style>
+<h1>${new URLSearchParams(url.search).get('~')}</h1>
+    `, {
+      headers: {
+        "Content-Type": "text/html"
+      }
+    })
+  }
+}
