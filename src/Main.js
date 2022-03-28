@@ -1,11 +1,10 @@
 const{Server}=require('./Server');
-const{PluginManager}=require('./PluginManager');
 const{Terminal}=require('./Terminal');
 
 class Main {
   static main(args) {
     new Server().listen(function(){
-      
+      Terminal.info("Server is up and running.")
     })
     return 0;
   }
