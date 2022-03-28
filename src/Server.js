@@ -26,10 +26,10 @@ class Server {
   }
   httpRoute() {
     this.app.get('/sw.js', function(req, res) {
-      res.type('js').send(readFileSync('../public/sw.js'));
+      res.type('js').send(readFileSync('./public/sw.js'));
     });
     this.app.all('*', function(req, res) {
-      res.type('html').send(readFileSync('../public/index.html'));
+      res.type('html').send(readFileSync('./public/index.html'));
     });
   }
   listen(cb) {
