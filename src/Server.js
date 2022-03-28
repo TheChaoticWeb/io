@@ -2,6 +2,7 @@ const express=require('express');
 const{createServer}=require('http');
 const socket$io=require('socket.io');
 const{Terminal}=require('./Terminal');
+const{readFileSync}=require('fs');
 
 class Server {
   constructor() {
@@ -24,7 +25,12 @@ class Server {
     });
   }
   httpRoute() {
-    
+    this.app.get('/sw.js', function(req, res) {
+      res.type('js').send(readFileSync('../public/sw.js'));
+    });
+    this.app.all('*', function(req, res) {
+      res.type('html').send(readFileSync('../public/index.html'));
+    });
   }
   listen(cb) {
     this.http.listen(8888, cb);
