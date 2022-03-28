@@ -4,7 +4,7 @@
   "description": "The `io.thechaoticweb.tk` service has an API that you can use, taking advantage of the `socket.io` library.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ."
   },
   "repository": {
     "type": "git",
