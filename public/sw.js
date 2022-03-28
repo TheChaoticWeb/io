@@ -8,7 +8,7 @@ addEventListener("fetch", function(event) {
       event.respondWith(new Response(err,{status:500}));
     });
   } else {
-    event.respondWith(handleRequest(request));
+    event.respondWith(handleRequest(event.request));
   }
 });
 
