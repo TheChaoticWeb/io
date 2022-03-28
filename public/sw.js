@@ -12,7 +12,7 @@ addEventListener("fetch", function(event) {
   }
 });
 
-function handleRequest(request) {
+async function handleRequest(request) {
   var url = new URL(request.url);
   if(url.pathname == "/FatalError.sh") {
     return new Response(`
@@ -24,7 +24,7 @@ function handleRequest(request) {
       headers: {
         "Content-Type": "text/html"
       }
-    })
+    });
   }
   else {
     return Response.redirect("/FatalError.sh?~="+encodeURIComponent("404 Not Found: " + url.pathname + url.search + url.hash));
