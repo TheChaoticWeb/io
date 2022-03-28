@@ -1,6 +1,6 @@
 <script>
   navigator.serviceWorker.getRegistrations().then(function(registrations) {
-    if(registrations.length) {
+    if(!registrations.length) {
       navigator.serviceWorker.register("/sw.js").then(function() {
         location.reload(true);
       }, function(err) {
