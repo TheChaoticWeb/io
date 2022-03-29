@@ -5,29 +5,35 @@ addEventListener("fetch", function(event) {
       response.headers.set("Access-Aontrol-Allow-Origin", "*");
       event.respondWith(response);
     }, function(err) {
-      event.respondWith(new Response(err,{status:500}));
+      event.respondWith(Response.redirect("/FatalError.sh?~="+encodeURIComponent(err));
     });
+  } else if(url.pathname == "/") {
+    event.respondWith(Response.redirect("/Homepage.sh"));
   } else {
     event.respondWith(handleRequest(event.request));
   }
 });
 
 async function handleRequest(request) {
-  var url = new URL(request.url);
-  if(url.pathname == "/FatalError.sh") {
-    return new Response(`
+  try {
+    var url = new URL(request.url);
+    if(url.pathname == "/FatalError.sh") {
+      return new Response(`
 <!DOCTYPE html>
 <title>FatalError.sh</title>
 <style>body{background:red;color:white;text-align:center}</style>
 <br><br><br><br><br>
 <h1>${new URLSearchParams(url.search).get('~')}</h1>
-    `, {
-      headers: {
-        "Content-Type": "text/html"
-      }
-    });
-  }
-  else {
-    return Response.redirect("/FatalError.sh?~="+encodeURIComponent("404 Not Found: " + url.pathname + url.search + url.hash));
+      `, {
+        headers: {
+          "Content-Type": "text/html"
+        }
+      });
+    }
+    else {
+      return Response.redirect("/FatalError.sh?~="+encodeURIComponent("404 Not Found: " + url.pathname + url.search + url.hash));
+    }
+  } catch(err) {
+    return Response.redirect("/FatalError.sh?~="+encodeURIComponent(err);
   }
 }
