@@ -13,7 +13,7 @@ addEventListener("fetch", function(event) {
         else {
           resolve(res);
         }
-      });
+      }));
     }, function(err) {
       event.respondWith(Response.redirect("/FatalError.sh?~="+encodeURIComponent(err)));
     });
