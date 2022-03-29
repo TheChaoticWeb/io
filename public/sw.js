@@ -19,6 +19,7 @@ async function handleRequest(request) {
 <!DOCTYPE html>
 <title>FatalError.sh</title>
 <style>body{background:red;color:white;text-align:center}</style>
+<br><br><br><br><br>
 <h1>${new URLSearchParams(url.search).get('~')}</h1>
     `, {
       headers: {
