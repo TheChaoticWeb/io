@@ -35,6 +35,6 @@ async function handleRequest(request) {
       return Response.redirect("/FatalError.sh?~="+encodeURIComponent("404 Not Found: " + url.pathname + url.search + url.hash));
     }
   } catch(err) {
-    return Response.redirect("/FatalError.sh?~="+encodeURIComponent(err);
+    return Response.redirect("/FatalError.sh?~="+encodeURIComponent(err));
   }
 }
