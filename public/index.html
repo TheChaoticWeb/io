@@ -7,7 +7,7 @@
         location.replace("/FatalError.sh?~="+encodeURIComponent(err));
       });
     } else {
-      location.replace("/Homepage.sh");
+      location.replace("/FatalError.sh?~="+encodeURIComponent("This page isn't working"));
     }
   }, function(err) {
     location.replace("/FatalError.sh?~="+encodeURIComponent(err));
