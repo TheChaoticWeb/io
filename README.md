@@ -11,3 +11,5 @@ socket.on('connection', function() {
 });
 ```
 Function names are stated in the subheadings below.
+### `core:ping`
+pong
