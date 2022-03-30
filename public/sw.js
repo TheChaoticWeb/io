@@ -6,6 +6,8 @@ addEventListener("fetch", function(event) {
         if(response.status.toString().startsWith("4")) {
           response.text().then(function(text) {
             resolve(Response.redirect("/FatalError.sh?~="+encodeURIComponent(text)));
+          }, function(err) {
+            resolve(Response.redirect("/FatalError.sh?~="+encodeURIComponent(err)));
           });
         } else {
           var modified = new Response(response);
