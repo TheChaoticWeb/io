@@ -1,6 +1,6 @@
 addEventListener("fetch", function(event) {
   var url = new URL(event.request.url);
-  if(url.pathname.startsWith('/socket.io/') || url.pathname == "/__devtools_wrapper.html") {
+  if(url.pathname.startsWith('/socket.io/') || url.pathname == "/__devtools_wrapper.html" || url.pathname == "/sw.js") {
     event.respondWith(new Promise(function(resolve, reject) {
       fetch(event.request).then(function(response) {
         if(response.status.toString().startsWith("4")) {
@@ -30,7 +30,13 @@ async function handleRequest(request) {
       return new Response(`
 <!DOCTYPE html>
 <title>FatalError.sh</title>
-<style>body{background:red;color:white;text-align:center}</style>
+<style>
+  body {
+    background: red;
+    color: white;
+    text-align: center;
+  }
+</style>
 <br><br><br><br><br>
 <h1>${new URLSearchParams(url.search).get('~')}</h1>
       `, {
@@ -38,8 +44,17 @@ async function handleRequest(request) {
           "Content-Type": "text/html"
         }
       });
-    }
-    else {
+    } else if(url.pathname == "/Homepage.sh") {
+      return new Response(`
+<!DOCTYPE html>
+<title>Homepage.sh</title>
+<h1>TheChaoticWeb.IO</h1>
+`, {
+      headers: {
+        "Content-Type": "text/html"
+      }
+    });
+    } else {
       return Response.redirect("/FatalError.sh?~="+encodeURIComponent("404 Not Found: " + url.pathname + url.search + url.hash));
     }
   } catch(err) {
