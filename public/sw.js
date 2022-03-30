@@ -48,6 +48,14 @@ async function handleRequest(request) {
       return new Response(`
 <!DOCTYPE html>
 <title>Homepage.sh</title>
+<style>
+  body {
+    background: lime;
+    color: #eee;
+    text-align: center;
+  }
+</style>
+<br><br><br><br><br>
 <h1>TheChaoticWeb.IO</h1>
 `, {
       headers: {
