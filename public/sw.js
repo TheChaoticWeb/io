@@ -11,7 +11,7 @@ addEventListener("fetch", function(event) {
           });
         } else {
           var modified = new Response(response);
-          modified.setHeader("Access-Control-Allow-Origin", "*");
+          modified.headers.set("Access-Control-Allow-Origin", "*");
           resolve(modified);
         }
       });
