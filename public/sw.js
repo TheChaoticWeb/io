@@ -1,22 +1,19 @@
 addEventListener("fetch", function(event) {
   var url = new URL(event.request.url);
   if(url.pathname.startsWith('/socket.io/') || url.pathname == "/__devtools_wrapper.html") {
-    fetch(event.request).then(function(response) {
-      var res = new Response(response);
-      res.headers.set("Access-Control-Allow-Origin", "*");
-      event.respondWith(new Promise(function(resolve, reject) {
-        if(res.status.toString().startsWith("4")) {
-          res.text().then(function(text) {
-            resolve(Response.redirect("/FatalError.sh?~="+encodeURIComponent(text)));
+    event.respondWith(new Promise(function(resolve, reject) {
+      fetch(event.request).then(function(response) {
+        if(response.status.toString().startsWith("4")) {
+          response.text().then(function(text) {
+            resolve(Response.redirect("/FatalError.sh?~="+encodeURIComponent(text));
           });
+        } else {
+          var modified = new Response(response);
+          modified.setHeader("Access-Control-Allow-Origin", "*");
+          resolve(modified);
         }
-        else {
-          resolve(res);
-        }
-      }));
-    }, function(err) {
-      event.respondWith(Response.redirect("/FatalError.sh?~="+encodeURIComponent(err)));
-    });
+      });
+    }));
   } else if(url.pathname == "/") {
     event.respondWith(Response.redirect("/Homepage.sh"));
   } else {
