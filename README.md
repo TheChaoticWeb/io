@@ -10,6 +10,6 @@ socket.on('connection', function() {
   });
 });
 ```
-Function names are stated in the subheadings below.
+Function names and very detailed descriptions are stated in the subheadings below.
 ### `core:ping`
 pong
