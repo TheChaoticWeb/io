@@ -58,10 +58,10 @@ async function handleRequest(request) {
 <br><br><br><br><br>
 <h1>TheChaoticWeb.IO</h1>
 `, {
-      headers: {
-        "Content-Type": "text/html"
-      }
-    });
+        headers: {
+          "Content-Type": "text/html"
+        }
+      });
     } else {
       return Response.redirect("/FatalError.sh?~="+encodeURIComponent("404 Not Found: " + url.pathname + url.search + url.hash));
     }
