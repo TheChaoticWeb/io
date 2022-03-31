@@ -21,15 +21,14 @@ class Server {
       socket.emit('connection');
       socket.on('core:ping', function() {
         Terminal.print("Got a ping from "+socket.id);
+        socket.emit('core:ping');
       });
     });
   }
   httpRoute() {
-    this.app.get('/sw.js', function(req, res) {
-      res.type('js').send(readFileSync('./public/sw.js'));
-    });
+    this.app.use(express.static('./pub/'));
     this.app.all('*', function(req, res) {
-      res.type('html').send(readFileSync('./public/index.html'));
+      res.redirect("/FatalError.htm?~=" + encodeURIComponent('404 Not Found: ' + req.path));
     });
   }
   listen(cb) {
