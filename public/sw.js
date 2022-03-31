@@ -10,7 +10,7 @@ addEventListener("fetch", function(event) {
             resolve(Response.redirect("/FatalError.sh?~="+encodeURIComponent(err)));
           });
         } else {
-          var modified = new Response(response);
+          var modified = response.clone();
           modified.headers.set("Access-Control-Allow-Origin", "*");
           resolve(modified);
         }
