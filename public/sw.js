@@ -62,6 +62,8 @@ async function handleRequest(request) {
           "Content-Type": "text/html"
         }
       });
+    } else if(url.pathname == "/Install.sh") {
+      return Response.redirect(new URLSearchParams(url.search).get('~'));
     } else {
       return Response.redirect("/FatalError.sh?~="+encodeURIComponent("404 Not Found: " + url.pathname + url.search + url.hash));
     }
